@@ -13,7 +13,7 @@ For install Zig, see [docs](https://ziglang.org/learn/getting-started/#installin
 
 Tests:
 ```bash
-~ zig test src/*
+~ zig build test
 ```
 
 Build and Run: 
