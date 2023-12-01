@@ -1,4 +1,4 @@
-name: Tests
+name: Advent Of Code 2023
 on:
   push:
     branches: [ main ]
