@@ -1,6 +1,10 @@
 const std = @import("std");
 const day01 = @import("./day01.zig");
 
+test {
+    std.testing.refAllDecls(@This());
+}
+
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
     const cwd = std.fs.cwd();
