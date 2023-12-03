@@ -50,7 +50,6 @@ pub fn main() !void {
     try printResult(stdout, "03", "01", day03Puzzle01Result);
     try bw.flush();
 
-    // Day 03
     const day03Puzzle02File = try cwd.openFile("./data/day03.txt", .{});
     defer day03Puzzle02File.close();
     const day03Puzzle02Result = try day03.solve02(day03Puzzle02File.reader(), allocator);
