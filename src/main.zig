@@ -1,6 +1,7 @@
 const std = @import("std");
 const day01 = @import("./day01.zig");
 const day02 = @import("./day02.zig");
+const day03 = @import("./day03.zig");
 
 test {
     std.testing.refAllDecls(@This());
@@ -40,6 +41,20 @@ pub fn main() !void {
     defer day02Puzzle02File.close();
     const day02Puzzle02Result = try day02.solve02(day02Puzzle02File.reader(), allocator);
     try printResult(stdout, "02", "02", day02Puzzle02Result);
+    try bw.flush();
+
+    // Day 03
+    const day03Puzzle01File = try cwd.openFile("./data/day03.txt", .{});
+    defer day03Puzzle01File.close();
+    const day03Puzzle01Result = try day03.solve01(day03Puzzle01File.reader(), allocator);
+    try printResult(stdout, "03", "01", day03Puzzle01Result);
+    try bw.flush();
+
+    // Day 03
+    const day03Puzzle02File = try cwd.openFile("./data/day03.txt", .{});
+    defer day03Puzzle02File.close();
+    const day03Puzzle02Result = try day03.solve02(day03Puzzle02File.reader(), allocator);
+    try printResult(stdout, "03", "02", day03Puzzle02Result);
     try bw.flush();
 }
 
