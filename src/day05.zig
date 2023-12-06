@@ -1,34 +1,10 @@
 const std = @import("std");
+const utils = @import("./utils.zig");
 const expectEqual = std.testing.expectEqual;
 
 const CharArray = std.ArrayList(u8);
 const IntegerArray = std.ArrayList(i128);
 const IntegerToIntegerMap = std.AutoArrayHashMap(i128, i128);
-
-pub fn readNumbersFromLine(line: CharArray, allocator: std.mem.Allocator) !IntegerArray {
-    var digits = CharArray.init(allocator);
-    defer digits.deinit();
-
-    var numbers = IntegerArray.init(allocator);
-
-    for (line.items) |c| {
-        if (std.ascii.isDigit(c)) {
-            try digits.append(c);
-        } else if (digits.items.len > 0) {
-            const n = try std.fmt.parseInt(i128, digits.items, 10);
-            try numbers.append(n);
-            digits.clearRetainingCapacity();
-        }
-    }
-
-    if (digits.items.len > 0) {
-        const n = try std.fmt.parseInt(i128, digits.items, 10);
-        try numbers.append(n);
-        digits.clearRetainingCapacity();
-    }
-
-    return numbers;
-}
 
 const Interval = struct {
     start: i128,
@@ -131,7 +107,7 @@ pub fn solve01(input: anytype, allocator: std.mem.Allocator) !i128 {
     };
 
     // first line contains the seeds
-    var seeds = try readNumbersFromLine(arr, allocator);
+    var seeds = try utils.readNumbersFromLine(i128, arr, allocator);
     defer seeds.deinit();
     arr.clearRetainingCapacity();
 
@@ -149,7 +125,7 @@ pub fn solve01(input: anytype, allocator: std.mem.Allocator) !i128 {
 
         const map = maps.items[mapNeedle];
 
-        const numbers = try readNumbersFromLine(arr, allocator);
+        const numbers = try utils.readNumbersFromLine(i128, arr, allocator);
         defer numbers.deinit();
 
         if (numbers.items.len == 0) {
@@ -224,7 +200,7 @@ pub fn solve02(input: anytype, allocator: std.mem.Allocator) !i128 {
     defer intervalMapppers.deinit();
 
     // first line contains the seeds pairs
-    var seedsPairs = try readNumbersFromLine(arr, allocator);
+    var seedsPairs = try utils.readNumbersFromLine(i128, arr, allocator);
     defer seedsPairs.deinit();
 
     //std.debug.print("==== INTERVALS =====\n", .{});
@@ -247,7 +223,7 @@ pub fn solve02(input: anytype, allocator: std.mem.Allocator) !i128 {
         defer arr.clearRetainingCapacity();
         defer workingIntervals.clearRetainingCapacity();
 
-        const numbers = try readNumbersFromLine(arr, allocator);
+        const numbers = try utils.readNumbersFromLine(i128, arr, allocator);
         defer numbers.deinit();
 
         if (numbers.items.len == 0) {
