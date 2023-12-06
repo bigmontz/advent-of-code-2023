@@ -253,7 +253,7 @@ pub fn solve02(input: anytype, allocator: std.mem.Allocator) !i128 {
         if (numbers.items.len == 0) {
             if (intervalMapppers.items.len != 0) {
                 try nextIntervals.appendSlice(currentIntervals.items);
-                var temp = nextIntervals;
+                const temp = nextIntervals;
                 nextIntervals = currentIntervals;
                 currentIntervals = temp;
 
